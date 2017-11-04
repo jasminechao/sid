@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103142104) do
+ActiveRecord::Schema.define(version: 20171103150238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20171103142104) do
     t.integer "amount"
     t.string "complete"
     t.bigint "step_id"
+    t.bigint "ingredient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_doses_on_ingredient_id"
     t.index ["step_id"], name: "index_doses_on_step_id"
   end
 
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20171103142104) do
     t.index ["stage_id"], name: "index_steps_on_stage_id"
   end
 
+  add_foreign_key "doses", "ingredients"
   add_foreign_key "doses", "steps"
   add_foreign_key "stages", "recipes"
   add_foreign_key "steps", "stages"

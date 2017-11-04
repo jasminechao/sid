@@ -1,0 +1,8 @@
+<h2>This is the recipes.index page</h2>
+
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= asset_path('index_banner') %>);">
+</div>
+
+<% @recipes.each do |recipe| %>
+  <%= link_to recipe.name, recipe_path(recipe) %>
+<% end %>

@@ -4,6 +4,7 @@ class CreateDoses < ActiveRecord::Migration[5.1]
       t.integer :amount
       t.string :complete
       t.references :step, foreign_key: true
+      t.references :ingredient, foreign_key: true
 
       t.timestamps
     end
