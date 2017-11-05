@@ -38,25 +38,16 @@ ActiveRecord::Schema.define(version: 20171103150238) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stages", force: :cascade do |t|
-    t.string "name"
-    t.bigint "recipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_stages_on_recipe_id"
-  end
-
   create_table "steps", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "stage_id"
+    t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["stage_id"], name: "index_steps_on_stage_id"
+    t.index ["recipe_id"], name: "index_steps_on_recipe_id"
   end
 
   add_foreign_key "doses", "ingredients"
   add_foreign_key "doses", "steps"
-  add_foreign_key "stages", "recipes"
-  add_foreign_key "steps", "stages"
+  add_foreign_key "steps", "recipes"
 end
